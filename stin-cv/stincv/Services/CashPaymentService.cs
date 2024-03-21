@@ -9,7 +9,8 @@ namespace stincv.Services
         {
             try
             {
-                string result = PaymentTransformations.transformXMLFromPayment(payment);
+                var paymentVM = PaymentTransformations.transformPaymentVMFromPayment(payment);
+                string result = PaymentTransformations.transformXMLFromPayment(paymentVM);
                 return result;
             }
             catch(JsonException e)
