@@ -1,0 +1,6 @@
+@stincv_HostAddress = http://localhost:5037
+
+GET {{stincv_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
