@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using stin_cv.Services;
 using StinCVProject.Models;
 
 namespace StinCVProject.Controllers
@@ -8,6 +9,13 @@ namespace StinCVProject.Controllers
     [ApiController]
     public class PaymentController : ControllerBase
     {
+        private PaymentProcessingHandler paymentServiceProcessing;
+
+        public PaymentController(PaymentProcessingHandler paymentServiceProcessing)
+        {
+            this.paymentServiceProcessing = paymentServiceProcessing;
+        }
+
         [HttpGet]
         public IActionResult Hello()
         {
