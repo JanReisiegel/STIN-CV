@@ -1,18 +1,20 @@
-﻿using StinCVProject.Models;
+﻿using Newtonsoft.Json;
+using StinCVProject.Models;
 
 namespace stin_cv.Services
 {
     public class CashPaymentService : IPaymentService
     {
-        public void ProcessPayment(Payment payment)
+        PaymentTranformation paymentTransformations = new PaymentTranformation();
+        public string ProcessPayment(Payment payment)
         {
             try
             {
-                paymentServiceProcessing.pay(paymentTransformations.transformXMLFromPayment(payment));
+                return paymentTransformations.transformXMLFromPayment(payment);
             }
-            catch (JsonProcessingException jsonProcessingException)
+            catch (JsonException jsonProcessingException)
             {
-                //handle here
+                return "Error Processing JSON: " + jsonProcessingException.Message;
             }
         }
     }

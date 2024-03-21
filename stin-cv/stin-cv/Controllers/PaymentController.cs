@@ -31,23 +31,14 @@ namespace StinCVProject.Controllers
         [HttpPost("pay")]
         public IActionResult Pay([FromBody] Payment payment)
         {
-            if (payment.PaymentType == PaymentType.Cash)
+            try
             {
-                return Ok(CardPay(payment.Amount, payment.Currency));
+                return Ok(paymentServiceProcessing.ProcessPayment(payment));
             }
-            else if (payment.PaymentType == PaymentType.Card)
+            catch (Exception e)
             {
-                return Ok(CashPay(payment.Amount, payment.Currency));
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
-            return Ok(payment);
-        }
-        private string CardPay(double castka, string mena)
-        {
-            return ("Nevim jak mam platit");
-        }
-        private string CashPay(double amount, string currency)
-        {
-            return $"Zaplaceno {amount} {currency}";
         }
     }
     
