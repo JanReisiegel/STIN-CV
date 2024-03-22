@@ -28,11 +28,6 @@ jobs:
       run: |
             cd stin-cv
             dotnet build
-    - name: Run API
-      run: |
-            cd stin-cv
-            cd stincv
-            dotnet run
     - name: Test
       run: |
             cd stin-cv
