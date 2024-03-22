@@ -21,7 +21,10 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      run: ls -a
+      run: |
+            ls -a
+            cd stin-cv
+            ls -a
             
       
 
