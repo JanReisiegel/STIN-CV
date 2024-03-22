@@ -25,7 +25,9 @@ jobs:
             cd stin-cv
             dotnet restore
     - name: Build
-      run: dotnet build
+      run: |
+            ls -a
+            dotnet build
     
     - name: Test
       run: dotnet test 
