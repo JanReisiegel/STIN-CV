@@ -6,9 +6,11 @@ name: .NET
 on:
   push:
     branches: 
-      - 'Featured'
+      - 'Featured/**'
       - 'main'
-
+env:
+  DOTNET_VERSION: '8.0.201'
+  
 jobs:
   build:
 
@@ -16,13 +18,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET 8
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.201
-    - name: GoTo sln
-      run: cd ./stin-cv
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet add package Newtonsoft.Json --version 13.0.3
+      
     - name: Build
-      run: dotnet build ./stin-cv.sln
+      run: dotnet build
+    
     - name: Test
-      run: dotnet test ./stin-cv.sln --filter FullyQualifiedName~Test.UnitTest1
+      run: dotnet test 
