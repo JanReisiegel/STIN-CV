@@ -3,11 +3,8 @@
 
 name: .NET
 
-on:
-  push:
-    branches: 
-      - 'Featured/**'
-      - 'main'
+on: [push]
+
 env:
   DOTNET_VERSION: '8.0.201'
   
