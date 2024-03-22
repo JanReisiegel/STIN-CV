@@ -20,9 +20,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 8.0.201
-    - name: Install dependencies
-      run: dotnet restore ../stin-cv/Test/Test.csproj
     - name: Build
-      run: dotnet build stin-cv.sln
+      run: dotnet msbuild stin-cv.sln
     - name: Test
-      run: dotnet test stin-cv.sln
+      run: dotnet test
