@@ -18,7 +18,7 @@ namespace Test
         [TestMethod]
         public void TestHelloWorld()
         {
-            var response = _client.GetAsync(_client.BaseAddress + "api/Payment/hello").Result;
+            var response = _client.GetAsync(_client.BaseAddress + "/api/Payment/hello").Result;
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.AreEqual("Hello World", response.Content.ReadAsStringAsync().Result);
         }
