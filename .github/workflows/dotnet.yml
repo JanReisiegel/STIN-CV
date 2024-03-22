@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 8.0.201
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore stin-cv.sln
     - name: Build
       run: dotnet build stin-cv.sln
     - name: Test
