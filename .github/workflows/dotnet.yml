@@ -21,7 +21,9 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
     - name: Install dependencies
-      run: dotnet add package Newtonsoft.Json --version 13.0.3
+      run: |
+            cd ..
+            dotnet add package Newtonsoft.Json --version 13.0.3
       
     - name: Build
       run: dotnet build
