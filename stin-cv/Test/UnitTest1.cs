@@ -11,7 +11,7 @@ namespace Test
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:7181")
+                BaseAddress = new Uri("http://localhost:5037")
             };
         }
 
