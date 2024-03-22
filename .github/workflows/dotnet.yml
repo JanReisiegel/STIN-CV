@@ -22,7 +22,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-            cd ..
+            cd ../stin-cv
             dotnet add package Newtonsoft.Json --version 13.0.3
       
     - name: Build
