@@ -1,4 +1,5 @@
 using stincv.Controllers;
+using System.Net.Http.Headers;
 
 namespace Test
 {
@@ -11,16 +12,24 @@ namespace Test
         {
             _client = new HttpClient
             {
-                BaseAddress = new Uri("http://localhost:5037")
+                BaseAddress = new Uri("http://localhost:5037"),
+                DefaultRequestHeaders =
+                {
+                    Accept = { new MediaTypeWithQualityHeaderValue("application/json") }
+                }
             };
         }
 
         [TestMethod]
-        public void TestHelloWorld()
+        public async void TestHelloWorld()
         {
-            var response = _client.GetAsync(_client.BaseAddress + "/api/Payment/hello").Result;
+            var response = await _client.GetAsync("/api/Payment/");
             Assert.IsTrue(response.IsSuccessStatusCode);
-            Assert.AreEqual("Hello World", response.Content.ReadAsStringAsync().Result);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                Assert.AreEqual("Hello World", responseString);
+            }
         }
 
 
