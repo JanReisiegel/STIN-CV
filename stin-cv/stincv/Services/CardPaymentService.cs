@@ -6,7 +6,7 @@ namespace stincv.Services
     {
         public string ProcessPayment(Payment payment)
         {
-            return $"{payment.Date.ToString("dd. MM. yyyy")} : {payment.Amount}/{payment.Currency}";
+            return $"{payment.Amount}/{payment.Currency}";
         }
     }
 }
