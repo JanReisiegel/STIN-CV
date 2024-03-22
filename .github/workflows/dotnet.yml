@@ -23,6 +23,6 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build
+      run: dotnet build Test.csproj
     - name: Test
       run: dotnet test --no-restore --verbosity normal
