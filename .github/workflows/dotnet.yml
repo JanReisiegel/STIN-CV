@@ -23,6 +23,6 @@ jobs:
     - name: GoTo sln
       run: cd ./stin-cv
     - name: Build
-      run: dotnet build stin-cv.sln
+      run: dotnet build ./stin-cv.sln
     - name: Test
-      run: dotnet test stin-cv.sln --filter FullyQualifiedName~Test.UnitTest1
+      run: dotnet test ./stin-cv.sln --filter FullyQualifiedName~Test.UnitTest1
