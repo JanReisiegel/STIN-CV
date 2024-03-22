@@ -22,9 +22,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-            ls -a
             cd stin-cv
-            ls -a
-            
+            dotnet restore
+    - name: Build
+      run: dotnet build
+    
+    - name: Test
+      run: dotnet test 
       
 
