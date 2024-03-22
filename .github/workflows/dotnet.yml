@@ -20,16 +20,12 @@ jobs:
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Install dependencies
+    - name: Install dependencies, Build and Test
       run: |
             cd stin-cv
             dotnet restore
-    - name: Build
-      run: |
-            ls -a
             dotnet build
-    
-    - name: Test
-      run: dotnet test 
+            dotnet test
+
       
 
