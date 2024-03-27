@@ -8,7 +8,7 @@ namespace stincv.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : ControllerBase
+    public class PaymentController : Controller
     {
         private readonly PaymentProcessingHandler _paymentProcessingHandler;
 
@@ -29,7 +29,7 @@ namespace stincv.Controllers
             return DateTime.Now.ToString();
         }
 
-        [HttpPost("pay")]
+        [HttpPost("pay/json")]
         public ActionResult<string> ProcessPayment([FromBody] PaymentVM paload)
         {
             try
@@ -38,6 +38,20 @@ namespace stincv.Controllers
                 return _paymentProcessingHandler.ProcessPayment(payment);
             }
             catch(Exception e)
+            {
+                var result = StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return result;
+            }
+        }
+        [HttpPost("pay/string")]
+        public ActionResult<string> ProcessPayment([FromBody]string payload)
+        {
+            try
+            {
+                var payment = PaymentTransformations.transformPaymentFromString(payload);
+                return _paymentProcessingHandler.ProcessPayment(payment);
+            }
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }

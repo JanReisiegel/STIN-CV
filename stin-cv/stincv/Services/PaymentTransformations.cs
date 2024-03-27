@@ -18,6 +18,18 @@ namespace stincv.Services
             }
         }
 
+        public static Payment transformPaymentFromString(string payload)
+        {
+            try
+            {
+                return JsonConvert.DeserializeObject<Payment>(payload);
+            }
+            catch(JsonException e)
+            {
+                throw;
+            }
+        }
+
         public static Payment transformPaymentFromPaymentVM(PaymentVM paymentVM)
         {
             try
