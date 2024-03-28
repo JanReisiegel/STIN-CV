@@ -18,42 +18,41 @@ namespace stincv.Controllers
         }
 
         [HttpGet]
-        public ActionResult<string> Hello()
+        public IActionResult Hello()
         {
-            return "Hello World";
+            return Ok("Hello World");
         }
 
         [HttpGet("time")]
-        public ActionResult<string> Time()
+        public IActionResult Time()
         {
-            return DateTime.Now.ToString();
+            return Ok(DateTime.Now.ToString());
         }
 
         [HttpPost("pay/json")]
-        public ActionResult<string> ProcessPayment([FromBody] PaymentVM paload)
+        public IActionResult ProcessPayment([FromBody] PaymentVM paload)
         {
             try
             {
                 var payment = PaymentTransformations.transformPaymentFromPaymentVM(paload);
-                return _paymentProcessingHandler.ProcessPayment(payment);
+                return Ok(_paymentProcessingHandler.ProcessPayment(payment));
             }
             catch(Exception e)
             {
-                var result = StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-                return result;
+                return StatusCode(StatusCodes.Status418ImATeapot, e.Message);
             }
         }
         [HttpPost("pay/string")]
-        public ActionResult<string> ProcessPayment([FromBody]string payload)
+        public IActionResult ProcessPayment([FromBody]string payload)
         {
             try
             {
                 var payment = PaymentTransformations.transformPaymentFromString(payload);
-                return _paymentProcessingHandler.ProcessPayment(payment);
+                return Ok(_paymentProcessingHandler.ProcessPayment(payment));
             }
             catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return StatusCode(StatusCodes.Status418ImATeapot, e.Message);
             }
         }
     }
