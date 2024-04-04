@@ -38,4 +38,4 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         slug: JanReisiegel/STIN-CV
-        directory: ./TestResults
+        directory: ./stin-cv/TestResults
