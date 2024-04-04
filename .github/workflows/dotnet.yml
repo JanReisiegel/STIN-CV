@@ -31,4 +31,11 @@ jobs:
     - name: Test
       run: |
             cd stin-cv
-            dotnet test
+            dotnet test --collect: "XPlat Code Coverage"
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        Token: ${{ secrets.CODECOV_TOKEN }}
+        #slug: JanReisiegel/STIN-CV
+        #directory: ./stin-cv/TestResults
