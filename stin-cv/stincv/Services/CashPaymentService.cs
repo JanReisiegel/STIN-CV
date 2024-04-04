@@ -1,4 +1,5 @@
-﻿using stincv.Models;
+﻿using Newtonsoft.Json;
+using stincv.Models;
 using System.Text.Json;
 
 namespace stincv.Services
@@ -7,16 +8,9 @@ namespace stincv.Services
     {
         public string ProcessPayment(Payment payment)
         {
-            try
-            {
-                var paymentVM = PaymentTransformations.transformPaymentVMFromPayment(payment);
-                string result = PaymentTransformations.transformXMLFromPayment(paymentVM);
-                return result;
-            }
-            catch(JsonException e)
-            {
-                throw;
-            }
+            var paymentVM = PaymentTransformations.transformPaymentVMFromPayment(payment);
+            string result = PaymentTransformations.transformXMLFromPayment(paymentVM);
+            return result;
         }
     }
 }

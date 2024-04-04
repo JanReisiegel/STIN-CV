@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using stincv.Controllers;
+using stincv.Services;
 using stincv.ViewModels;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -27,6 +29,14 @@ namespace Test
         }
 
         [TestMethod]
+        public void TestTransformFromJsonToXML()
+        {
+            string wrongJson = "{\"Amount\":1000,\"Currency\":\"CZK\",\"Date\":\"2021-11-10\",\"PaymentType\":\"CASH\"";
+            Assert.ThrowsException<JsonSerializationException>(() => PaymentTransformations.transformPaymentFromString(wrongJson));
+        }
+
+
+        [TestMethod]
         public void TestProcessPayment1()
         {
             string json = File.ReadAllText("../../../TestData/test1.json"); //Univerzální øešení
@@ -49,7 +59,7 @@ namespace Test
         {
             string json = File.ReadAllText("../../../TestData/test3.json");
             var response = paymentController.ProcessPayment(json) as ObjectResult;
-            Assert.AreEqual(418, response.StatusCode);
+            Assert.AreEqual(500, response.StatusCode);
         }
 
     }

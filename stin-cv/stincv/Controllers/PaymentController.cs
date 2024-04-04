@@ -39,7 +39,7 @@ namespace stincv.Controllers
             }
             catch (Exception e)
             {
-                return StatusCode(StatusCodes.Status418ImATeapot, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

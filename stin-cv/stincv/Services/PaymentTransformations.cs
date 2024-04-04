@@ -8,14 +8,7 @@ namespace stincv.Services
     {
         public static string transformXMLFromPayment(PaymentVM payment)
         {
-            try
-            {
-                return JsonConvert.DeserializeXmlNode(JsonConvert.SerializeObject(payment), "Payment").OuterXml;
-            }
-            catch(JsonException e)
-            {
-                throw;
-            }
+            return JsonConvert.DeserializeXmlNode(JsonConvert.SerializeObject(payment), "Payment").OuterXml;
         }
 
         public static Payment transformPaymentFromString(string payload)
@@ -24,7 +17,7 @@ namespace stincv.Services
             {
                 return JsonConvert.DeserializeObject<Payment>(payload);
             }
-            catch(JsonException e)
+            catch(JsonSerializationException e)
             {
                 throw;
             }
