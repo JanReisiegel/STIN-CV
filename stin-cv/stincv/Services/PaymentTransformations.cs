@@ -30,25 +30,6 @@ namespace stincv.Services
             }
         }
 
-        public static Payment transformPaymentFromPaymentVM(PaymentVM paymentVM)
-        {
-            try
-            {
-                return new Payment
-                {
-                    Amount = paymentVM.Amount,
-                    Currency = paymentVM.Currency,
-                    Date = DateTime.Parse(paymentVM.Date),
-                    PaymentType = paymentVM.PaymentType,
-                    Items = new List<string>()
-                };
-            }
-            catch(FormatException e)
-            {
-                throw new FormatException("DateTime must be in valid format. For example in format: yyyy-MM-dd", e);
-            }
-        }
-
         public static PaymentVM transformPaymentVMFromPayment(Payment payment)
         {
             return new PaymentVM

@@ -29,19 +29,6 @@ namespace stincv.Controllers
             return Ok(DateTime.Now.ToString());
         }
 
-        [HttpPost("pay/json")]
-        public IActionResult ProcessPayment([FromBody] PaymentVM paload)
-        {
-            try
-            {
-                var payment = PaymentTransformations.transformPaymentFromPaymentVM(paload);
-                return Ok(_paymentProcessingHandler.ProcessPayment(payment));
-            }
-            catch(Exception e)
-            {
-                return StatusCode(StatusCodes.Status418ImATeapot, e.Message);
-            }
-        }
         [HttpPost("pay/string")]
         public IActionResult ProcessPayment([FromBody]string payload)
         {
