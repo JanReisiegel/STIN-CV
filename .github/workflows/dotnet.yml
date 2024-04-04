@@ -36,6 +36,6 @@ jobs:
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        slug: JanReisiegel/STIN-CV
-        directory: ./stin-cv/TestResults
+        Token: ${{ secrets.CODECOV_TOKEN }}
+        #slug: JanReisiegel/STIN-CV
+        #directory: ./stin-cv/TestResults
